@@ -32,6 +32,9 @@ class SubCmd
     const SUB_GAME_OUT_CARD = 12;		        //出牌提示 --> CGameOutCard
     const SUB_GAME_OUT_CARD_REQ = 13;		    //出牌请求 --> CGameOutCardReq
     const SUB_GAME_OUT_CARD_RESP = 14;		    //出牌返回 --> CGameOutCardResp
+
+    const SUB_GAME_JOIN_ROOM_REQ = 15;          // 加入房间
+
     const CHAT_MSG_REQ = 213;			        //聊天消息请求，客户端使用
     const CHAT_MSG_RESP = 214;			        //聊天消息响应，服务端使用
 }

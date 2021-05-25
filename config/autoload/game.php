@@ -11,4 +11,5 @@ return [
     'user_room' => 'user:room:map:%s',        //用户和房间映射关系
     'user_room_data' => 'user:room:data:%s',  //用户游戏房间数据
     'user_room_play' => 'user:room:play:%s',  //用户游戏房间打牌步骤数据
+    'user_room_temp_no' => "user:room:temp:no:%s" // 临时创建的假房间
 ];

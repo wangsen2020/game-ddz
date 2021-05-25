@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>斗地主测试页面 - Swoole</title>
 </head>
 <style>
-    .show{
-        width:1000px;
-        margin:10px;
-        padding:10px;
+    .show {
+        width: 1000px;
+        margin: 10px;
+        padding: 10px;
         float: left;
     }
-    .btn{
+
+    .btn {
         height: 25px;
         width: 80px;
     }
-    #url{
+
+    .urlstyle {
         height: 25px;
         width: 400px;
     }
-    li{
-        padding:10px 0px;
+
+    li {
+        padding: 10px 0px;
     }
 
 </style>
 <body>
 <div class="show">
     <h1>昵称:<?php echo $account;?><span id="master"></span></h1>
-    <div >
+    <div>
         服务器链接:
-        <input id="url" value="ws://<?php echo $host;?>" >
+        <input id="url" class="urlstyle" value="ws://<?php echo $host;?>">
         <input class="btn" type="button" value="连接" id="ConnBt" onclick="conn()">
     </div>
+    <div>
+        请输入房间:
+        <input id="room_no" class="urlstyle" value="">
+        <input class="btn" type="button" value="进入房间" id="joinRoom" onclick="joinRoom()">
+        若该房间不存在则创建一个
+    </div>
     <br>
-    <div >
+    <div>
         <input class="btn" type="button" value="游戏开始" id="conn" name="conn" onclick="start()">
         <input class="btn" type="button" value="叫地主" id="call" name="call" onclick="call()" disabled>
         <input class="btn" type="button" value="不叫" id="nocall" name="nocall" onclick="nocall()" disabled>
@@ -81,16 +90,25 @@
 <script src="client/Resp.js"></script>
 <script src="client/Packet.js"></script>
 <script src="client/msgpack.js"></script>
-<script type="text/javascript" >
+<script type="text/javascript">
     var info = {};
+
     //连接websocket
     function conn() {
         var url = document.getElementById('url').value;
         obj = Init.webSock(url);
         return obj;
     }
+
     //websocket
     var obj = conn();
+
+    // 加入房间
+    function joinRoom() {
+        var room_no = document.getElementById('room_no').value;
+        console.log(room_no);
+        Req.JoinRoom(obj, room_no);
+    }
 
     //游戏开始
     function start() {
@@ -115,11 +133,11 @@
         data['chair_id'] = info.chair_id;
         var obj_box = document.getElementsByName("handcard");
         var check_val = [];
-        for(k in obj_box){
-            if(obj_box[k].checked)
+        for (k in obj_box) {
+            if (obj_box[k].checked)
                 check_val.push(obj_box[k].value);
         }
-        if(check_val.length == 0) {
+        if (check_val.length == 0) {
             alert('请选牌!');
             return false;
         }
@@ -137,9 +155,9 @@
     }
 
     //发送消息函数
-    function send(){
+    function send() {
         var data = document.getElementById('SendText').value;
-        if(data.length <= 0) return ;
+        if (data.length <= 0) return;
         Req.ChatMsg(obj, data);
     }
 

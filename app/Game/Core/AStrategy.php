@@ -1,6 +1,8 @@
 <?php
 namespace App\Game\Core;
 
+use App\Game\Conf\MainCmd;
+use App\Game\Conf\SubCmd;
 use App\Game\Core\DdzPoker;
 
 

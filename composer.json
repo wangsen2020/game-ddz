@@ -15,6 +15,7 @@
         "php": ">=7.2",
         "ext-swoole": ">=4.4",
         "ext-msgpack": "*",
+        "ext-json": "*",
         "hyperf/cache": "~1.1.0",
         "hyperf/command": "~1.1.0",
         "hyperf/config": "~1.1.0",
@@ -48,7 +49,8 @@
         "mockery/mockery": "^1.0",
         "doctrine/common": "^2.9",
         "phpstan/phpstan": "^0.11.2",
-        "hyperf/testing": "~1.1.0"
+        "hyperf/testing": "~1.1.0",
+        "swoole/ide-helper": "^4.6"
     },
     "suggest": {
         "ext-openssl": "Required to use HTTPS.",

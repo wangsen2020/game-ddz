@@ -49,7 +49,7 @@ class WebSocketController implements OnMessageInterface, OnOpenInterface, OnClos
             } else {
                 $data['userinfo'] = array();
             }
-            $obj = new Dispatch($data, $this->container);
+            $obj = new Dispatch($data);
             $back = "<center><h1>404 Not Found</h1></center><hr><center>Swoole</center>\n";
             if(!empty($obj->getStrategy())) {
                 $back = $obj->exec();

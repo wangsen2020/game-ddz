@@ -21,6 +21,12 @@ class Packet
 
     /**
      * 打包数据，固定包头，4个字节为包头（里面存了包体长度），包体前2个字节为
+     * @param $data
+     * @param int $cmd
+     * @param int $scmd
+     * @param string $format
+     * @param string $type
+     * @return array|string
      */
     public static function packEncode($data, $cmd = 1, $scmd = 1, $format='msgpack', $type = "tcp")
     {

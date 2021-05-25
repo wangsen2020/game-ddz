@@ -2,12 +2,12 @@
 
 var Req = {
     //定时器
-    timer : 0,
+    timer: 0,
 
     //发送心跳
-    heartBeat:function(obj) {
+    heartBeat: function (obj) {
         this.timer = setInterval(function () {
-            if(obj.ws.readyState == obj.ws.OPEN) {
+            if (obj.ws.readyState == obj.ws.OPEN) {
                 var data = {};
                 data['time'] = (new Date()).valueOf()
                 obj.send(data, MainCmd.CMD_SYS, SubCmd.HEART_ASK_REQ);
@@ -18,24 +18,29 @@ var Req = {
     },
 
     //游戏开始
-    GameStart: function(obj,data) {
+    GameStart: function (obj, data) {
         var data = {};
         obj.send(data, MainCmd.CMD_GAME, SubCmd.SUB_GAME_START_REQ);
     },
 
+    JoinRoom: function (obj, room_no) {
+        var data = {"room_no": room_no}
+        obj.send(data, MainCmd.CMD_GAME, SubCmd.SUB_GAME_JOIN_ROOM_REQ);
+    },
+
     //抢地主
-    GameCall: function(obj,status) {
+    GameCall: function (obj, status) {
         var data = {"type": status};
         obj.send(data, MainCmd.CMD_GAME, SubCmd.SUB_GAME_CALL_REQ);
     },
 
-	//玩游戏
-    PlayGame: function(obj,data) {
+    //玩游戏
+    PlayGame: function (obj, data) {
         obj.send(data, MainCmd.CMD_GAME, SubCmd.SUB_GAME_OUT_CARD_REQ);
     },
 
     //聊天消息
-    ChatMsg: function(obj, data) {
+    ChatMsg: function (obj, data) {
         var data = {data};
         obj.send(data, MainCmd.CMD_GAME, SubCmd.CHAT_MSG_REQ);
     },
